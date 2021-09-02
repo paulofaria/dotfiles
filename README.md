@@ -2,7 +2,7 @@
 
 ## macOS
 
-Install Xcode tools.
+Update macOS and Install Xcode tools.
 
 ```sh
 sudo softwareupdate -i -a
