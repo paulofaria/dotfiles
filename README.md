@@ -4,6 +4,6 @@
 
 Install Xcode tools.
 
-``sh
+```sh
 xcode-select --install
-``
+```
