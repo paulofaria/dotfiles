@@ -2,10 +2,15 @@
 
 ## macOS
 
-Update macOS, Install Xcode command line tools and [homebrew](https://brew.sh).
+Update macOS and Install Xcode command line tools.
 
 ```sh
 sudo softwareupdate -i -a
 xcode-select --install
+```
+
+Install [homebrew](https://brew.sh).
+
+```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
