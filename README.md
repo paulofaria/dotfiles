@@ -20,3 +20,18 @@ Install [chezmoi](https://www.chezmoi.io).
 ```sh
 brew install chezmoi
 ```
+
+Init chezmoi.
+
+```sh
+chezmoi init https://github.com/paulofaria/dotfiles.git
+```
+
+Start yabai, skhd and spacebar.
+
+```sh
+brew services start yabai
+brew services start skhd
+brew services start spacebar
+```
+
