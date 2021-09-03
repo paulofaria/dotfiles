@@ -8,6 +8,7 @@ tap "cmacrae/formulae" # Spacebar
 # CLI Apps
 brew "git"
 brew "tree"
+brew "fzf"
 brew "mas"
 brew "rbenv"
 brew "node"
@@ -19,6 +20,7 @@ cask "kitty"
 cask "ableton-live-suite"
 # Cask Fonts
 cask "font-fontawesome"
+cask "font-jetbrains-mono-nerd-font"
 # Mac App Store Apps
 mas "Xcode", id: 497799835
 EOF
@@ -31,6 +33,15 @@ rbenv rehash
 
 # Install bundler
 gem install bundler --conservative
+
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install zsh plugins
+git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 
 # Hide desktop icons
 defaults write com.apple.finder CreateDesktop false
