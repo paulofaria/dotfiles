@@ -1,12 +1,17 @@
 #!/bin/bash
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
+# Taps
+tap "koekeishiya/formulae" # Yabai and friends
 # CLI Apps
 brew "git"
+brew "tree"
 brew "mas"
 brew "rbenv"
 brew "node"
+brew "yabai"
 # Cask Apps
+cask "kitty"
 cask "ableton-live-suite"
 # Mac App Store Apps
 mas "Xcode", id: 497799835
