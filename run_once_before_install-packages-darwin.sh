@@ -3,6 +3,7 @@
 brew bundle --no-lock --file=/dev/stdin <<EOF
 # Taps
 tap "koekeishiya/formulae" # Yabai and friends
+tap "cmacrae/formulae" # Spacebar
 # CLI Apps
 brew "git"
 brew "tree"
@@ -10,6 +11,8 @@ brew "mas"
 brew "rbenv"
 brew "node"
 brew "yabai"
+brew "skhd"
+brew "spacebar"
 # Cask Apps
 cask "kitty"
 cask "ableton-live-suite"
@@ -28,3 +31,11 @@ gem install bundler --conservative
 
 # Hide desktop icons
 defaults write com.apple.finder CreateDesktop false
+
+# Auto-hide menu bar
+osascript <<EOF
+tell application "System Events"
+tell dock preferences to set autohide menu bar to true
+end tell
+EOF
+
