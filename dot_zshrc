@@ -13,10 +13,27 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting bgnotify vi-mode)
+plugins=(git vi-mode zsh-autosuggestions zsh-syntax-highlighting bgnotify)
 
 source $ZSH/oh-my-zsh.sh
-export EDITOR='vim'
+export EDITOR='nvim'
+
+# zsh-vi-mode
+
+# Only changing the escape key to `jk` in insert mode, we still
+# keep using the default keybindings `^[` in other modes
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+export KEYTIMEOUT=10
+bindkey -M viins 'jk' vi-cmd-mode
+
+# The plugin will auto execute this zvm_before_init function
+# function zvm_before_init() {
+#  zvm_bindkey viins '^[[A' history-beginning-search-backward
+#  zvm_bindkey viins '^[[B' history-beginning-search-forward
+#  zvm_bindkey vicmd '^[[A' history-beginning-search-backward
+#  zvm_bindkey vicmd '^[[B' history-beginning-search-forward
+#}
+
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -24,3 +41,7 @@ export EDITOR='vim'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
