@@ -13,9 +13,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode zsh-autosuggestions zsh-syntax-highlighting bgnotify)
+plugins=(git vi-mode zsh-autosuggestions fast-syntax-highlighting bgnotify)
 
 source $ZSH/oh-my-zsh.sh
+source ~/.config/zsh/zsh-theme-sonokai-andromeda
 export EDITOR='nvim'
 
 # vi-mode
