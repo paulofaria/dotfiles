@@ -1,8 +1,6 @@
 " Key mappings
 inoremap jk <Esc>
 
-let mapleader = " "
-
 "nnoremap <Left> :echo "No left for you!"<CR>
 "vnoremap <Left> :<C-u>echo "No left for you!"<CR>
 "inoremap <Left> <C-o>:echo "No left for you!"<CR>
@@ -41,20 +39,24 @@ set background=dark
 " Plug Configuration
 call plug#begin('~/.vim/plugged')
 
+" Config
 Plug 'alker0/chezmoi.vim'
+" LSP 
 Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
-Plug 'preservim/nerdtree'
-Plug 'preservim/nerdcommenter'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-dispatch' 
-Plug 'airblade/vim-gitgutter'
+" IDE
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'vim-airline/vim-airline'
-Plug 'christoomey/vim-tmux-navigator'
+" Editor
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-commentary' 
+Plug 'tpope/vim-surround'
+Plug 'airblade/vim-gitgutter'
+" Themes
 Plug 'sainnhe/sonokai'
 Plug 'ryanoasis/vim-devicons'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 
 call plug#end()
 
@@ -65,9 +67,21 @@ let g:sonokai_diagnostic_virtual_text = 'colored'
 let g:airline_theme = 'sonokai'
 colorscheme sonokai
 
+" IDE
+let mapleader = " "
+
+" Find files with Telescope
+nnoremap <leader>ff <cmd>Telescope git_files<cr>
+
+" Find buffers with Telescope
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+
 " LSP Config
 lua require("lsp-config")
 
 set completeopt=menuone,noinsert,noselect
 let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 lua require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
+
+" Telescope Config
+lua require("telescope-config")
