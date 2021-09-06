@@ -1,0 +1,5 @@
+[user]
+	name = Paulo Faria
+	email = 5126193+paulofaria@users.noreply.github.com
+[credential]
+    helper = osxkeychain

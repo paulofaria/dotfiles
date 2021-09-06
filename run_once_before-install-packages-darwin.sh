@@ -19,6 +19,7 @@ brew "skhd"
 brew "spacebar"
 # Cask Apps
 cask "kitty"
+cask "slack"
 # Cask Fonts
 cask "font-fontawesome"
 cask "font-jetbrains-mono-nerd-font"
