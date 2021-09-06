@@ -24,7 +24,7 @@ brew install chezmoi
 Init chezmoi.
 
 ```sh
-chezmoi init https://github.com/paulofaria/dotfiles.git
+chezmoi init paulofaria
 ```
 
 Start yabai, skhd and spacebar.
