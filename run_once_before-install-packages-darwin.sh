@@ -11,6 +11,7 @@ brew "gh"
 brew "bat"
 brew "tree"
 brew "fzf"
+brew "neovim"
 brew "mas"
 brew "rbenv"
 brew "yabai"
@@ -36,4 +37,8 @@ git clone --depth=1 https://github.com/zdharma/fast-syntax-highlighting.git ${ZS
 
 # Install NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh 
+
+# Install vim-plug
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
