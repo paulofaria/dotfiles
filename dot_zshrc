@@ -13,10 +13,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting bgnotify vi-mode)
+plugins=(git vi-mode zsh-autosuggestions fast-syntax-highlighting bgnotify)
 
 source $ZSH/oh-my-zsh.sh
-export EDITOR='vim'
+source ~/.config/zsh/zsh-theme-sonokai-andromeda
+export EDITOR='nvim'
+
+# vi-mode
+export KEYTIMEOUT=10
+bindkey -M viins 'jk' vi-cmd-mode
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -24,3 +29,13 @@ export EDITOR='vim'
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Aliases
+alias cdd="cd ~/Development"
+alias cdgh="cd ~/Development/GitHub"
+alias cdp="cd ~/Development/Github/paulofaria"
+alias cdgl="cd ~/Development/GitLab"
