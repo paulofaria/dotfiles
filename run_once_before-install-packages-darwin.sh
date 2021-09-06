@@ -7,6 +7,7 @@ tap "koekeishiya/formulae" # Yabai and friends
 tap "cmacrae/formulae" # Spacebar
 # CLI Apps
 brew "git"
+brew "gh"
 brew "bat"
 brew "tree"
 brew "fzf"
