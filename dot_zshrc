@@ -35,7 +35,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Aliases
-alias cdd="cd ~/Development"
-alias cdgh="cd ~/Development/GitHub"
-alias cdp="cd ~/Development/Github/paulofaria"
-alias cdgl="cd ~/Development/GitLab"
+export DEV_HOME="/Volumes/SSD/Development"
+alias cdd="cd ${DEV_HOME}"
+alias cdgh="cd ${DEV_HOME}/GitHub"
+alias cdp="cd ${DEV_HOME}/Github/paulofaria"
+alias cdgl="cd ${DEV_HOME}/GitLab"
