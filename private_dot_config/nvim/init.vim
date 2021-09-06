@@ -76,7 +76,7 @@ set relativenumber
 let g:gitgutter_map_keys = 0
 
 " Hop to word
-nnoremap <leader>h <cmd>HopWord<cr>
+nnoremap <leader>hw <cmd>HopWord<cr>
 
 " Hop to character
 nnoremap <leader>hc <cmd>HopChar1<cr>
