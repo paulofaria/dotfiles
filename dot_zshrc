@@ -26,6 +26,15 @@ bindkey -M viins 'jk' vi-cmd-mode
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# fzf theme: tokyo night
+# generated with: https://minsw.github.io/fzf-color-picker/
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+  --color=fg:#c0caf5,bg:#24283b,hl:#c0caf5
+  --color=fg+:#c0caf5,bg+:#364a82,hl+:#c0caf5
+  --color=info:#e0af68,prompt:#9ece6a,pointer:#f7768e
+  --color=marker:#9ece6a,spinner:#e0af68,header:#7aa2f7
+'
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -36,6 +45,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Aliases
 export DEV_HOME="/Volumes/SSD/Development"
+alias clr=clear
 alias cdd="cd ${DEV_HOME}"
 alias cdgh="cd ${DEV_HOME}/GitHub"
 alias cdp="cd ${DEV_HOME}/Github/paulofaria"
