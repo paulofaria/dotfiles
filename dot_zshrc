@@ -13,7 +13,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode zsh-autosuggestions fast-syntax-highlighting osx bgnotify)
+plugins=(git vi-mode zsh-autosuggestions fast-syntax-highlighting fzf-tab osx bgnotify)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.config/zsh/zsh-theme-sonokai-andromeda
@@ -34,6 +34,16 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
   --color=info:#e0af68,prompt:#9ece6a,pointer:#f7768e
   --color=marker:#9ece6a,spinner:#e0af68,header:#7aa2f7
 '
+
+# preview with bat
+export FZF_PREVIEW_COMMAND="bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}"
+
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS"
+  --ansi --preview-window 'right:60%' --preview '($FZF_PREVIEW_COMMAND) 2> /dev/null'
+"
+
+export FZF_DEFAULT_COMMAND='fd --type file --color=always --follow --hidden --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
