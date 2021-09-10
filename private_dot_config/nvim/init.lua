@@ -25,33 +25,44 @@ end
 -- Plug Configuration
 local packer = require('packer')
 
-packer.startup(function()
+packer.startup(function(use)
     use 'wbthomason/packer.nvim'
+
     -- Config
+
     use 'alker0/chezmoi.vim'
+
     -- IDE
+
     use 'neovim/nvim-lspconfig'
+
+    use 'kabouzeid/nvim-lspinstall'
+
+
     use 'nvim-lua/completion-nvim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'nvim-telescope/telescope-github.nvim'
-    use 'nvim-telescope/telescope-project.nvim' 
+    use 'nvim-telescope/telescope-project.nvim'
     use 'nvim-telescope/telescope-hop.nvim'
 
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
     }
-    
+
     use {
         'hoob3rt/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
 
+    use 'ThePrimeagen/vim-be-good'
+
     -- Editor
+
     use 'tpope/vim-sensible'
-    use 'tpope/vim-commentary' 
+    use 'tpope/vim-commentary'
     use 'tpope/vim-surround'
     use 'airblade/vim-gitgutter'
     use 'phaazon/hop.nvim'
@@ -74,7 +85,8 @@ packer.startup(function()
         end
     }
 
-    -- Themes 
+    -- Themes
+
     use 'folke/tokyonight.nvim'
     use 'kyazdani42/nvim-web-devicons'
 
@@ -87,13 +99,10 @@ cmd([[
     augroup end
 ]])
 
-
-
 -- IDE
-require('lsp-config')
---set completeopt=menuone,noinsert,noselect
---let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
---lua require'lspconfig'.tsserver.setup{on_attach=require'completion'.on_attach}
+
+require('lspconfig-config')
+require('lspinstall-config')
 require('telescope-config')
 require('lualine-config')
 require('nvim-treesitter-config')
@@ -112,14 +121,16 @@ opt.expandtab = true -- On pressing tab, insert 4 spaces
 
 g.gitgutter_map_keys = 0 -- Disable gitgutter mappings because they were conflicting with hop
 
-map('i', 'jk', '<esc>') 
+map('i', 'jk', '<esc>')
 map('n', '<leader>hw', '<cmd>HopWord<cr>') -- Hop to word
 map('n', '<leader>hc', '<cmd>HopChar1<cr>') -- Hop to character
 map('n', '<leader>hb', '<cmd>HopChar2<cr>') -- Hop to bigram (2 characters)
 map('n', '<leader>hp', '<cmd>HopPattern<cr>') --nnoremap <leader>hp <cmd>HopPattern<cr>
 
 -- Theme
+
 require('nvim-web-devicons-config')
 
 opt.termguicolors = true
 cmd 'colorscheme tokyonight'
+
