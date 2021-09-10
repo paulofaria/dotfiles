@@ -13,3 +13,7 @@ source ~/.nvm/nvm.sh
 nvm install --lts
 nvm use --lts
 
+# Install global node packages
+npm install --global prettier
+npm install --global eslint_d
+

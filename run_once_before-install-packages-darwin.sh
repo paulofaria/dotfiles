@@ -13,6 +13,7 @@ brew "tree"
 brew "fzf"
 brew "fd"
 brew "ripgrep"
+brew "go"
 brew "neovim"
 brew "mas"
 brew "rbenv"
@@ -30,6 +31,9 @@ cask "font-jetbrains-mono-nerd-font"
 mas "Xcode", id: 497799835
 EOF
 
+# Install fzf key bindings and fuzzy completion
+$(brew --prefix)/opt/fzf/install
+
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -43,7 +47,6 @@ git clone --depth=1 https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-$HOME/.oh-my
 # Install NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh 
 
-# Install vim-plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# Install lvim
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
 
