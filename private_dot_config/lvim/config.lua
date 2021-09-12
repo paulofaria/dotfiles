@@ -1,42 +1,42 @@
---[[
-lvim is the global options object
+-- General
 
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
-]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
-
--- general
 lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "tokyonight"
+vim.opt.timeoutlen = 1000
 
--- keymappings [view all the defaults by pressing <leader>Lk]
+-- Key Mappings
+
 lvim.leader = "space"
--- add your own keymapping
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
--- unmap a default keymapping
--- lvim.keys.normal_mode["<C-Up>"] = ""
--- edit a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>" -- Save with ctrl+s
+
+-- Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
+-- lvim.keys.normal_mode["<C-j>"]
+-- nnoremap <silent><C-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+-- nnoremap <silent><C-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+-- nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+-- nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+
+-- Telescope
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
--- lvim.builtin.telescope.on_config_done = function()
---   local actions = require "telescope.actions"
---   -- for input mode
---   lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = actions.move_selection_next
---   lvim.builtin.telescope.defaults.mappings.i["<C-k>"] = actions.move_selection_previous
---   lvim.builtin.telescope.defaults.mappings.i["<C-n>"] = actions.cycle_history_next
---   lvim.builtin.telescope.defaults.mappings.i["<C-p>"] = actions.cycle_history_prev
---   -- for normal mode
---   lvim.builtin.telescope.defaults.mappings.n["<C-j>"] = actions.move_selection_next
---   lvim.builtin.telescope.defaults.mappings.n["<C-k>"] = actions.move_selection_previous
--- end
 
--- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.telescope.on_config_done = function()
+  local actions = require "telescope.actions"
+  -- Input mode
+  lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = actions.move_selection_next
+  lvim.builtin.telescope.defaults.mappings.i["<C-k>"] = actions.move_selection_previous
+  lvim.builtin.telescope.defaults.mappings.i["<C-n>"] = actions.cycle_history_next
+  lvim.builtin.telescope.defaults.mappings.i["<C-p>"] = actions.cycle_history_prev
+  -- Normal mode
+  lvim.builtin.telescope.defaults.mappings.n["<C-j>"] = actions.move_selection_next
+  lvim.builtin.telescope.defaults.mappings.n["<C-k>"] = actions.move_selection_previous
+end
+
+-- Which Key
+
+lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -47,18 +47,53 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 }
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+-- lvim.builtin.which_key.mappings["ls"] = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" }
+
+-- Dashboard
+
 lvim.builtin.dashboard.active = true
+
+-- Terminal
+
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.direction = "horizontal"
-lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 0
 
--- if you don't want all the parsers change this to a table of the ones you want
+-- Lua line
+
+local components = require("core.lualine.components")
+
+lvim.builtin.lualine.style = "default"
+lvim.builtin.lualine.options.component_separators = ''
+lvim.builtin.lualine.sections.lualine_a = { "mode" }
+lvim.builtin.lualine.sections.lualine_b = {}
+
+lvim.builtin.lualine.sections.lualine_c = {
+  components.branch,
+  components.filename,
+  components.diff,
+  components.diagnostics
+}
+
+lvim.builtin.lualine.sections.lualine_x = {
+  components.filetype,
+  components.progress
+}
+
+lvim.builtin.lualine.sections.lualine_y = {}
+lvim.builtin.lualine.sections.lualine_z = { components.scrollbar }
+
+-- Nvim Tree
+
+lvim.builtin.nvimtree.side = "left"
+lvim.builtin.nvimtree.show_icons.git = 1
+
+-- Tree Sitter
+
 lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
+
+-- Comments based on the cursor location in the file
 
 lvim.builtin.treesitter.context_commentstring = {
   enable = true,
@@ -66,41 +101,29 @@ lvim.builtin.treesitter.context_commentstring = {
 }
 
 lvim.builtin.comment.hook = function()
-  if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
-    require("ts_context_commentstring.internal").update_commentstring()
-  end
+  require("ts_context_commentstring.internal").update_commentstring()
 end
 
-local cmp_sources = lvim.builtin.cmp.sources
-table.insert(cmp_sources, 1, { name = 'cmp_tabnine' })
+-- Adds Tabnine as the first source for cmp's autocomplete
 
--- set a formatter if you want to override the default lsp one (if it exists)
+table.insert(lvim.builtin.cmp.sources, 1, { name = "cmp_tabnine" })
+
+-- Formatters and Linters
 
 lvim.lang.javascript.formatters = { { exe = "prettier" } }
 lvim.lang.javascriptreact.formatters = lvim.lang.javascript.formatters
 
-lvim.lang.javascript.linters = { { exe = "eslint_d" } } 
+lvim.lang.javascript.linters = { { exe = "eslint" } }
 lvim.lang.javascriptreact.linters = lvim.lang.javascript.linters
 
 lvim.lang.typescript.formatters = { { exe = "prettier" } }
 lvim.lang.typescriptreact.formatters = lvim.lang.typescript.formatters
 
-lvim.lang.typescript.linters = { { exe = "eslint_d" } } 
+lvim.lang.typescript.linters = { { exe = "eslint" } }
 lvim.lang.typescriptreact.linters = lvim.lang.typescript.linters
 
--- lvim.lang.python.formatters = {
---   {
---     exe = "black",
---   }
--- }
--- set an additional linter
--- lvim.lang.python.linters = {
---   {
---     exe = "flake8",
---   }
--- }
+-- Plugins
 
--- Additional Plugins
 lvim.plugins = {
   { "folke/tokyonight.nvim" },
   {
@@ -154,7 +177,7 @@ lvim.plugins = {
   {
     "windwp/nvim-ts-autotag",
     config = function()
-      require('nvim-ts-autotag').setup()
+      require("nvim-ts-autotag").setup()
     end
   },
   { "JoosepAlviste/nvim-ts-context-commentstring" },
@@ -165,13 +188,64 @@ lvim.plugins = {
     end
   },
   {
-    'tzachar/cmp-tabnine',
+    "tzachar/cmp-tabnine",
     run='./install.sh',
     requires = 'hrsh7th/nvim-cmp'
-  }
+  },
+  {
+    "monaqa/dial.nvim",
+      event = "BufRead",
+      config = function()
+        local dial = require("dial")
+
+        vim.cmd([[
+          nmap <C-a> <Plug>(dial-increment)
+          nmap <C-x> <Plug>(dial-decrement)
+          vmap <C-a> <Plug>(dial-increment)
+          vmap <C-x> <Plug>(dial-decrement)
+          vmap g<C-a> <Plug>(dial-increment-additional)
+          vmap g<C-x> <Plug>(dial-decrement-additional)
+        ]])
+
+        dial.augends["custom#boolean"] = dial.common.enum_cyclic {
+          name = "boolean",
+          strlist = { "true", "false" },
+        }
+
+        table.insert(dial.config.searchlist.normal, "custom#boolean")
+
+        -- For Languages which prefer True/False, e.g. python.
+
+        dial.augends["custom#Boolean"] = dial.common.enum_cyclic {
+          name = "Boolean",
+          strlist = { "True", "False" },
+        }
+
+        table.insert(dial.config.searchlist.normal, "custom#Boolean")
+      end,
+  },
+  {
+    "norcalli/nvim-colorizer.lua",
+      config = function()
+        require("colorizer").setup({ "*" }, {
+            RGB = true, -- #RGB hex codes
+            RRGGBB = true, -- #RRGGBB hex codes
+            RRGGBBAA = true, -- #RRGGBBAA hex codes
+            rgb_fn = true, -- CSS rgb() and rgba() functions
+            hsl_fn = true, -- CSS hsl() and hsla() functions
+            css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+            css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+            })
+    end,
+  },
+  {
+    "metakirby5/codi.vim",
+    cmd = "Codi",
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
--- lvim.autocommands.custom_groups = {
---   { "BufWinEnter", "*.lua", "setlocal ts=8 sw=8" },
--- }
+
+lvim.autocommands.custom_groups = {
+  { "InsertEnter", "*", ":normal zz" }, -- Center cursor on entering insert mode
+}
