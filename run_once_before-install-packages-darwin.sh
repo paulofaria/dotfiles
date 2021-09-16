@@ -26,6 +26,7 @@ brew "spacebar"
 cask "kitty"
 cask "alfred"
 cask "slack"
+cask "google-chrome"
 # Cask Fonts
 cask "font-fontawesome"
 cask "font-jetbrains-mono-nerd-font"
