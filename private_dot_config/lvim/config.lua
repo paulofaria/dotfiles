@@ -8,7 +8,6 @@ vim.opt.timeoutlen = 1000
 -- Key Mappings
 
 lvim.leader = "space"
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>" -- Save with ctrl+s
 
 -- Ctrl-j/k deletes blank line below/above, and Alt-j/k inserts.
 -- lvim.keys.normal_mode["<C-j>"]
@@ -17,23 +16,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>" -- Save with ctrl+s
 -- nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 -- nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 
--- Telescope
-
--- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
-
-lvim.builtin.telescope.on_config_done = function()
-  local actions = require "telescope.actions"
-  -- Input mode
-  lvim.builtin.telescope.defaults.mappings.i["<C-j>"] = actions.move_selection_next
-  lvim.builtin.telescope.defaults.mappings.i["<C-k>"] = actions.move_selection_previous
-  lvim.builtin.telescope.defaults.mappings.i["<C-n>"] = actions.cycle_history_next
-  lvim.builtin.telescope.defaults.mappings.i["<C-p>"] = actions.cycle_history_prev
-  -- Normal mode
-  lvim.builtin.telescope.defaults.mappings.n["<C-j>"] = actions.move_selection_next
-  lvim.builtin.telescope.defaults.mappings.n["<C-k>"] = actions.move_selection_previous
-end
-
--- Which Key
+-- which_key
 
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 
@@ -47,20 +30,27 @@ lvim.builtin.which_key.mappings["t"] = {
   w = { "<cmd>Trouble lsp_workspace_diagnostics<cr>", "Diagnostics" },
 }
 
--- lvim.builtin.which_key.mappings["ls"] = { "<cmd>SymbolsOutline<CR>", "Symbols Outline" }
-
--- Dashboard
+-- dashboard
 
 lvim.builtin.dashboard.active = true
 
--- Terminal
+-- notify
+
+lvim.builtin.notify.active = true
+
+-- terminal
 
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.direction = "horizontal"
 
--- Lua line
+-- nvimtree
 
-local components = require("core.lualine.components")
+lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.show_icons.git = 1
+
+-- lualine
+
+local components = require("lvim.core.lualine.components")
 
 lvim.builtin.lualine.style = "default"
 lvim.builtin.lualine.options.component_separators = ''
@@ -82,48 +72,61 @@ lvim.builtin.lualine.sections.lualine_x = {
 lvim.builtin.lualine.sections.lualine_y = {}
 lvim.builtin.lualine.sections.lualine_z = { components.scrollbar }
 
--- Nvim Tree
+-- treesitter
 
-lvim.builtin.nvimtree.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+lvim.builtin.treesitter.ensure_installed = {
+  "bash",
+  "c",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "tsx",
+  "css",
+  "rust",
+  "java",
+  "yaml",
+}
 
--- Tree Sitter
-
-lvim.builtin.treesitter.ensure_installed = "maintained"
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
--- Comments based on the cursor location in the file
-
-lvim.builtin.treesitter.context_commentstring = {
-  enable = true,
-  enable_autocmd = false
-}
-
-lvim.builtin.comment.hook = function()
-  require("ts_context_commentstring.internal").update_commentstring()
-end
-
--- Adds Tabnine as the first source for cmp's autocomplete
+-- cmp
 
 table.insert(lvim.builtin.cmp.sources, 1, { name = "cmp_tabnine" })
 
--- Formatters and Linters
+-- lsp
 
-lvim.lang.javascript.formatters = { { exe = "prettier" } }
-lvim.lang.javascriptreact.formatters = lvim.lang.javascript.formatters
+local formatters = require("lvim.lsp.null-ls.formatters")
 
-lvim.lang.javascript.linters = { { exe = "eslint" } }
-lvim.lang.javascriptreact.linters = lvim.lang.javascript.linters
+formatters.setup {
+  {
+    command = "prettier",
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    },
+  },
+}
 
-lvim.lang.typescript.formatters = { { exe = "prettier" } }
-lvim.lang.typescriptreact.formatters = lvim.lang.typescript.formatters
+local linters = require("lvim.lsp.null-ls.linters")
 
-lvim.lang.typescript.linters = { { exe = "eslint" } }
-lvim.lang.typescriptreact.linters = lvim.lang.typescript.linters
+linters.setup {
+  {
+    command = "eslint",
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    },
+  },
+}
 
--- Plugins
-
+-- Additional Plugins
 lvim.plugins = {
   { "folke/tokyonight.nvim" },
   {
@@ -180,7 +183,6 @@ lvim.plugins = {
       require("nvim-ts-autotag").setup()
     end
   },
-  { "JoosepAlviste/nvim-ts-context-commentstring" },
   {
     "ray-x/lsp_signature.nvim",
     config = function()
@@ -189,63 +191,69 @@ lvim.plugins = {
   },
   {
     "tzachar/cmp-tabnine",
-    run='./install.sh',
+    run ='./install.sh',
     requires = 'hrsh7th/nvim-cmp'
   },
   {
     "monaqa/dial.nvim",
-      event = "BufRead",
-      config = function()
-        local dial = require("dial")
+    event = "BufRead",
+    config = function()
+      vim.cmd([[
+        nmap  <C-a>  <Plug>(dial-increment)
+        nmap  <C-x>  <Plug>(dial-decrement)
+        vmap  <C-a>  <Plug>(dial-increment)
+        vmap  <C-x>  <Plug>(dial-decrement)
+        vmap g<C-a> g<Plug>(dial-increment)
+        vmap g<C-x> g<Plug>(dial-decrement)
+      ]])
 
-        vim.cmd([[
-          nmap <C-a> <Plug>(dial-increment)
-          nmap <C-x> <Plug>(dial-decrement)
-          vmap <C-a> <Plug>(dial-increment)
-          vmap <C-x> <Plug>(dial-decrement)
-          vmap g<C-a> <Plug>(dial-increment-additional)
-          vmap g<C-x> <Plug>(dial-decrement-additional)
-        ]])
+      local augend = require("dial.augend")
 
-        dial.augends["custom#boolean"] = dial.common.enum_cyclic {
-          name = "boolean",
-          strlist = { "true", "false" },
+      require("dial.config").augends:register_group{
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias["%Y/%m/%d"],
+        },
+        typescript = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.constant.new {
+            elements = {
+              "let",
+              "const",
+            },
+          }
+        },
+        visual = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias["%Y/%m/%d"],
+          augend.constant.alias.alpha,
+          augend.constant.alias.Alpha,
         }
-
-        table.insert(dial.config.searchlist.normal, "custom#boolean")
-
-        -- For Languages which prefer True/False, e.g. python.
-
-        dial.augends["custom#Boolean"] = dial.common.enum_cyclic {
-          name = "Boolean",
-          strlist = { "True", "False" },
-        }
-
-        table.insert(dial.config.searchlist.normal, "custom#Boolean")
-      end,
+      }
+    end
   },
   {
     "norcalli/nvim-colorizer.lua",
-      config = function()
-        require("colorizer").setup({ "*" }, {
-            RGB = true, -- #RGB hex codes
-            RRGGBB = true, -- #RRGGBB hex codes
-            RRGGBBAA = true, -- #RRGGBBAA hex codes
-            rgb_fn = true, -- CSS rgb() and rgba() functions
-            hsl_fn = true, -- CSS hsl() and hsla() functions
-            css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-            css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
-            })
-    end,
-  },
-  {
-    "metakirby5/codi.vim",
-    cmd = "Codi",
+    config = function()
+      require("colorizer").setup({ "*" }, {
+        RGB = true, -- #RGB hex codes
+        RRGGBB = true, -- #RRGGBB hex codes
+        RRGGBBAA = true, -- #RRGGBBAA hex codes
+        rgb_fn = true, -- CSS rgb() and rgba() functions
+        hsl_fn = true, -- CSS hsl() and hsla() functions
+        css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+        css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      })
+    end
   },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
 lvim.autocommands.custom_groups = {
-  { "InsertEnter", "*", ":normal zz" }, -- Center cursor on entering insert mode
+ { "InsertEnter", "*", ":normal zz" }, -- Center cursor on entering insert mode
 }
+
