@@ -30,6 +30,7 @@ cask "alfred"
 cask "slack"
 cask "google-chrome"
 # Cask Fonts
+cask "sf-symbols"
 cask "font-fontawesome"
 cask "font-jetbrains-mono-nerd-font"
 # Mac App Store Apps
