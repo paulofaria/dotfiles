@@ -34,11 +34,6 @@ packer.startup(function(use)
 
     -- IDE
 
-    use 'neovim/nvim-lspconfig'
-
-    use 'kabouzeid/nvim-lspinstall'
-
-
     use 'nvim-lua/completion-nvim'
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
@@ -46,11 +41,6 @@ packer.startup(function(use)
     use 'nvim-telescope/telescope-github.nvim'
     use 'nvim-telescope/telescope-project.nvim'
     use 'nvim-telescope/telescope-hop.nvim'
-
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
 
     use {
         'hoob3rt/lualine.nvim',
@@ -101,11 +91,8 @@ cmd([[
 
 -- IDE
 
-require('lspconfig-config')
-require('lspinstall-config')
 require('telescope-config')
 require('lualine-config')
-require('nvim-treesitter-config')
 
 map('n', '<leader>ff', '<cmd>Telescope git_files<cr>') -- Find files with Telescope
 map('n', '<leader>fb', '<cmd>Telescope buffers<cr>') -- Find buffers with Telescope

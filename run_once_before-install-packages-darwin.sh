@@ -4,24 +4,25 @@ brew bundle --no-lock --file=/dev/stdin <<EOF
 # Taps
 tap "homebrew/cask-fonts"
 tap "koekeishiya/formulae" # Yabai and friends
-tap "cmacrae/formulae" # Spacebar
+tap "FelixKratz/formulae" # Sketchybar
 tap "jesseduffield/lazygit" # Lazygit
 # CLI Apps
 brew "git"
 brew "gh"
 brew "bat"
 brew "tree"
+brew "jq" 
 brew "fzf"
 brew "fd"
 brew "ripgrep"
-brew "jesseduffield/lazygit/lazygit"
+brew "lazygit"
 brew "go"
 brew "neovim"
 brew "mas"
 brew "rbenv"
 brew "yabai"
 brew "skhd"
-brew "spacebar"
+brew "sketchybar"
 brew "yarn"
 # Cask Apps
 cask "kitty"
@@ -52,5 +53,5 @@ git clone --depth=1 https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-$HOME/.oh-my
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh 
 
 # Install lvim
-LVBRANCH=rolling bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/rolling/utils/installer/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
 
