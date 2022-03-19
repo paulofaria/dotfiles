@@ -1,0 +1,116 @@
+# This is a demo config to bring across some of the most important commands more easily.
+# For a more advanced configuration example see https://github.com/FelixKratz/SketchyBar/discussions/47#discussion-3587958
+############## BAR ############## 
+sketchybar -m --bar height=24        \
+                    blur_radius=50   \
+                    position=top     \
+                    padding_left=26  \
+                    padding_right=16 \
+                    color=0x44000000
+
+############## GLOBAL DEFAULTS ############## 
+sketchybar -m --default updates=when_shown                         \
+                        drawing=on                                 \
+                        icon.font="Font Awesome 5 Free:Solid:12.0" \
+                        icon.color=0x80ffffff                      \
+                        label.font="Helvetica Neue:Medium:13.0"    \
+                        label.color=0xffffffff
+
+############## SPACE DEFAULTS ############## 
+sketchybar -m --default label.padding_left=2  \
+                        label.padding_right=2 \
+                        icon.padding_left=8   \
+                        label.padding_right=8
+
+############## PRIMARY DISPLAY SPACES ############## 
+sketchybar -m --add space terminal left                              \
+              --set terminal associated_display=1                    \
+                             associated_space=1                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 1" \
+              --add space yo left                                    \
+              --set yo     associated_display=1                      \
+                             associated_space=2                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 2" \
+              --add space tools left                                 \
+              --set tools    associated_display=1                    \
+                             associated_space=3                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 3" \
+              --add space www left                                   \
+              --set www      associated_display=1                    \
+                             associated_space=4                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 4" \
+              --add space email left                                 \
+              --set email    associated_display=1                    \
+                             associated_space=5                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 5" \
+              --add space slack left                                 \
+              --set slack    associated_display=1                    \
+                             associated_space=6                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 6" \
+              --add space discord left                               \
+              --set discord  associated_display=1                    \
+                            associated_space=7                       \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 7" \
+              --add space whatsapp left                              \
+              --set whatsapp associated_display=1                    \
+                             associated_space=8                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff          \
+                             click_script="yabai -m space --focus 8" \
+              --add space music left                                 \
+              --set music    associated_display=1                    \
+                             associated_space=9                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 9" \
+              --add space games left                                 \
+              --set games    associated_display=1                    \
+                             associated_space=10                      \
+                             icon=                                  \
+                             icon.highlight_color=0xffffffff         \
+                             click_script="yabai -m space --focus 10"
+
+
+############## ITEM DEFAULTS ###############
+
+sketchybar -m --default label.padding_left=2  \
+                        icon.padding_right=2  \
+                        icon.padding_left=6   \
+                        label.padding_right=6
+
+############## LEFT ITEMS ############## 
+
+############## RIGHT ITEMS ############## 
+
+sketchybar -m --add item clock right                                                                  \
+              --set clock         update_freq=10                                                      \
+                                  script="~/.config/sketchybar/plugins/clock.sh"                      \
+                                                                                                      \
+              --add item mailIndicator right                                                          \
+              --set mailIndicator associated_space=1,2,3,4,5,6,7,8,9                                  \
+                                  update_freq=30                                                      \
+                                  script="~/.config/sketchybar/plugins/mailIndicator.sh"              \
+                                  icon=                                                              \
+                                  click_script="osascript -e 'tell application \"Mail\" to activate'"
+
+############# CENTER ITEMS #############
+
+############## FINALIZING THE SETUP ##############
+
+sketchybar -m --update
+
+echo "sketchybar configuration loaded.."
