@@ -32,6 +32,6 @@ Start yabai, skhd and spacebar.
 ```sh
 brew services start yabai
 brew services start skhd
-brew services start spacebar
+brew services start sketchybar
 ```
 
