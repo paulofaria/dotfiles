@@ -32,7 +32,7 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- dashboard
 
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.mode = "dashboard"
 
 -- notify
 
@@ -166,8 +166,8 @@ lvim.plugins = {
     config = function()
       vim.g.indentLine_enabled = 1
       vim.g.indent_blankline_char = "▏"
-      vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
-      vim.g.indent_blankline_buftype_exclude = {"terminal"}
+      vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+      vim.g.indent_blankline_buftype_exclude = { "terminal" }
       vim.g.indent_blankline_show_trailing_blankline_indent = false
       vim.g.indent_blankline_show_first_indent_level = false
     end
@@ -175,7 +175,7 @@ lvim.plugins = {
   { "tpope/vim-repeat" },
   {
     "tpope/vim-surround",
-    keys = {"c", "d", "y"}
+    keys = { "c", "d", "y" }
   },
   {
     "windwp/nvim-ts-autotag",
@@ -191,7 +191,7 @@ lvim.plugins = {
   },
   {
     "tzachar/cmp-tabnine",
-    run ='./install.sh',
+    run = './install.sh',
     requires = 'hrsh7th/nvim-cmp'
   },
   {
@@ -209,7 +209,7 @@ lvim.plugins = {
 
       local augend = require("dial.augend")
 
-      require("dial.config").augends:register_group{
+      require("dial.config").augends:register_group {
         default = {
           augend.integer.alias.decimal,
           augend.integer.alias.hex,
@@ -254,6 +254,5 @@ lvim.plugins = {
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 
 lvim.autocommands.custom_groups = {
- { "InsertEnter", "*", ":normal zz" }, -- Center cursor on entering insert mode
+  { "InsertEnter", "*", ":normal zz" }, -- Center cursor on entering insert mode
 }
-
