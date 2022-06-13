@@ -32,7 +32,7 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- dashboard
 
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.mode = "dashboard"
 
 -- notify
 
