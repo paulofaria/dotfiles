@@ -32,6 +32,7 @@ lvim.builtin.which_key.mappings["t"] = {
 
 -- dashboard
 
+lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
 -- notify
@@ -46,7 +47,7 @@ lvim.builtin.terminal.direction = "horizontal"
 -- nvimtree
 
 lvim.builtin.nvimtree.setup.view.side = "left"
-lvim.builtin.nvimtree.show_icons.git = 1
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- lualine
 
@@ -127,6 +128,7 @@ linters.setup {
 }
 
 -- Additional Plugins
+
 lvim.plugins = {
   { "folke/tokyonight.nvim" },
   {
@@ -252,7 +254,3 @@ lvim.plugins = {
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
-
-lvim.autocommands.custom_groups = {
-  { "InsertEnter", "*", ":normal zz" }, -- Center cursor on entering insert mode
-}
