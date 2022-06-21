@@ -23,6 +23,7 @@ brew "rbenv"
 brew "yabai"
 brew "skhd"
 brew "sketchybar"
+brew "npm"
 brew "yarn"
 # Cask Apps
 cask "kitty"

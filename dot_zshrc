@@ -11,7 +11,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/paulo/.oh-my-zsh"
+export ZSH="/Users/paulofaria/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -22,7 +22,7 @@ plugins=(git vi-mode zsh-autosuggestions fast-syntax-highlighting fzf-tab macos 
 
 source $ZSH/oh-my-zsh.sh
 source ~/.config/zsh/zsh-theme-sonokai-andromeda
-export EDITOR='nvim'
+export EDITOR='lvim'
 
 # vi-mode
 export KEYTIMEOUT=10

@@ -27,7 +27,7 @@ Init chezmoi.
 chezmoi init paulofaria
 ```
 
-Start yabai, skhd and spacebar.
+Start yabai, skhd and sketchybar.
 
 ```sh
 brew services start yabai
@@ -35,3 +35,4 @@ brew services start skhd
 brew services start sketchybar
 ```
 
+Install Alfred Tokyo Night [theme](https://www.alfredapp.com/extras/theme/puSaeqbft2/).
