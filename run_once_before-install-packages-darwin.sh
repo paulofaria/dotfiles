@@ -9,6 +9,7 @@ tap "jesseduffield/lazygit" # Lazygit
 # CLI Apps
 brew "git"
 brew "gh"
+brew "glab"
 brew "bat"
 brew "tree"
 brew "jq" 
