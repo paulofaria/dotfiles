@@ -18,7 +18,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git vi-mode zsh-autosuggestions fast-syntax-highlighting fzf-tab macos bgnotify)
+plugins=(git vi-mode zsh-autosuggestions fast-syntax-highlighting fzf-tab macos)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.config/zsh/zsh-theme-sonokai-andromeda
@@ -57,6 +57,10 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Ruby
+export GEM_HOME="$HOME/.gem/ruby/2.6.0"
+export PATH="$GEM_HOME/bin:$PATH"
 
 # Aliases
 export DEV_HOME="~/Development"
