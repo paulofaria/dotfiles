@@ -9,6 +9,7 @@ tap "jesseduffield/lazygit" # Lazygit
 # CLI Apps
 brew "git"
 brew "gh"
+brew "glab"
 brew "bat"
 brew "tree"
 brew "jq" 
@@ -23,6 +24,7 @@ brew "rbenv"
 brew "yabai"
 brew "skhd"
 brew "sketchybar"
+brew "npm"
 brew "yarn"
 # Cask Apps
 cask "kitty"
