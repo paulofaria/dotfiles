@@ -47,6 +47,7 @@ lvim.builtin.terminal.direction = "horizontal"
 -- nvimtree
 
 lvim.builtin.nvimtree.setup.view.side = "left"
+lvim.builtin.nvimtree.setup.view.adaptive_size = true
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- lualine
@@ -96,6 +97,9 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- cmp
 
 table.insert(lvim.builtin.cmp.sources, 1, { name = "cmp_tabnine" })
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 
 -- lsp
 
@@ -195,6 +199,19 @@ lvim.plugins = {
     "tzachar/cmp-tabnine",
     run = './install.sh',
     requires = 'hrsh7th/nvim-cmp'
+  },
+  { "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      vim.defer_fn(function()
+        require("copilot").setup {
+          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+        }
+      end, 100)
+    end,
+  },
+  { "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua", "nvim-cmp" },
   },
   {
     "monaqa/dial.nvim",
