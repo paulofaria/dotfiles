@@ -16,6 +16,9 @@ yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Audio MIDI Setup$" manage=off
 yabai -m rule --add app="^Simulator$" manage=off
 yabai -m rule --add app="^CooperVPNMac$" manage=off
+yabai -m rule --add app="^TONEX$" manage=off
+yabai -m rule --add app="^AmpliTube 5$" manage=off
+yabai -m rule --add app="^Live$" title="^Preferences$" manage=off
 
 yabai -m config external_bar all:26:0
 
