@@ -2,39 +2,40 @@
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 # Taps
-tap "homebrew/cask-fonts"
-tap "koekeishiya/formulae" # Yabai and friends
 tap "FelixKratz/formulae" # Sketchybar
+tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit" # Lazygit
+tap "koekeishiya/formulae" # Yabai and friends
 # CLI Apps
-brew "git"
-brew "gh"
-brew "glab"
 brew "bat"
-brew "tree"
-brew "jq" 
-brew "fzf"
 brew "fd"
-brew "ripgrep"
-brew "lazygit"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "glab"
 brew "go"
-brew "neovim"
+brew "jq" 
+brew "lazygit"
 brew "mas"
-brew "rbenv"
-brew "yabai"
-brew "skhd"
-brew "sketchybar"
+brew "neovim"
 brew "npm"
+brew "python"
+brew "rbenv"
+brew "ripgrep"
+brew "sketchybar"
+brew "skhd"
+brew "tree"
+brew "yabai"
 brew "yarn"
 # Cask Apps
-cask "kitty"
 cask "alfred"
-cask "slack"
 cask "google-chrome"
+cask "kitty"
+cask "slack"
 # Cask Fonts
-cask "sf-symbols"
 cask "font-fontawesome"
 cask "font-jetbrains-mono-nerd-font"
+cask "sf-symbols"
 # Mac App Store Apps
 # mas "Xcode", id: 497799835
 EOF

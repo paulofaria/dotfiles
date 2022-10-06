@@ -96,10 +96,11 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- cmp
 
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+
 table.insert(lvim.builtin.cmp.sources, 1, { name = "cmp_tabnine" })
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
-lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 
 -- lsp
 
@@ -200,19 +201,6 @@ lvim.plugins = {
     run = './install.sh',
     requires = 'hrsh7th/nvim-cmp'
   },
-  { "zbirenbaum/copilot.lua",
-    event = { "VimEnter" },
-    config = function()
-      vim.defer_fn(function()
-        require("copilot").setup {
-          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
-        }
-      end, 100)
-    end,
-  },
-  { "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim-cmp" },
-  },
   {
     "monaqa/dial.nvim",
     event = "BufRead",
@@ -266,6 +254,26 @@ lvim.plugins = {
         css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
         css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
       })
+    end
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    event = { "VimEnter" },
+    config = function()
+      vim.schedule(function()
+        require("copilot").setup {
+          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
+        }
+      end)
+    end
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    after = { "copilot.lua", "nvim-cmp" },
+    config = function()
+      vim.schedule(function()
+        require("copilot_cmp").setup()
+      end)
     end
   },
 }
