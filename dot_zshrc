@@ -66,7 +66,7 @@ export PATH="$GEM_HOME/bin:$PATH"
 export DEV_HOME="~/Development"
 alias c=clear
 alias cdd="cd ${DEV_HOME}"
-alias cdgh="cd ${DEV_HOME}/GitHub"
-alias cdp="cd ${DEV_HOME}/Github/paulofaria"
-alias cdgl="cd ${DEV_HOME}/GitLab"
+alias cdgh="cd ${DEV_HOME}/github.com"
+alias cdp="cd ${DEV_HOME}/github.com/paulofaria"
+alias cdgl="cd ${DEV_HOME}/gitlab.com"
 
