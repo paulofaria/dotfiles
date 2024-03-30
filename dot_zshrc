@@ -70,3 +70,15 @@ alias cdgh="cd ${DEV_HOME}/github.com"
 alias cdp="cd ${DEV_HOME}/github.com/paulofaria"
 alias cdgl="cd ${DEV_HOME}/gitlab.com"
 
+# zoxide
+eval "$(zoxide init --cmd cd zsh)"
+
+# Mojo
+export MODULAR_HOME="/Users/paulo/.modular"
+export PATH="/Users/paulo/.modular/pkg/packages.modular.com_mojo/bin:$PATH"
+
+# Configure Xcode to include additional countepart suffixes for View, ViewModel and Reducer counterparts 
+defaults write com.apple.dt.Xcode IDEAdditionalCounterpartSuffixes -array-add "Reducer" "View" "ViewModel"
+
+# Configure lazygit default config home
+export XDG_CONFIG_HOME="$HOME/.config"
