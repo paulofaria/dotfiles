@@ -2,38 +2,44 @@
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 # Taps
-tap "FelixKratz/formulae" # Sketchybar
 tap "homebrew/cask-fonts"
 tap "jesseduffield/lazygit" # Lazygit
-tap "koekeishiya/formulae" # Yabai and friends
 # CLI Apps
 brew "bat"
+brew "chezmoi"
+brew "difftastic"
 brew "fd"
 brew "fzf"
 brew "gh"
 brew "git"
-brew "glab"
+brew "git-delta"
+brew "git-lfs"
 brew "go"
 brew "jq" 
 brew "lazygit"
 brew "mas"
-brew "modular"
+brew "mosh"
 brew "neovim"
-brew "npm"
+brew "pnpm"
+brew "postgresql"
 brew "python"
-brew "rbenv"
 brew "ripgrep"
-brew "sketchybar"
-brew "skhd"
+brew "tmux"
+brew "tree-sitter-cli"
 brew "tree"
-brew "yabai"
-brew "yarn"
+brew "xcbeautify"
+brew "xcodebuildmcp"
+brew "yazi"
 brew "zoxide"
 # Cask Apps
-cask "alfred"
+cask "finicky"
+cask "ghostty"
+cask "git-credential-manager"
 cask "google-chrome"
-cask "kitty"
+cask "kaleidoscope"
+cask "raycast"
 cask "slack"
+cask "whatsapp"
 # Cask Fonts
 cask "font-fontawesome"
 cask "font-jetbrains-mono-nerd-font"
@@ -57,7 +63,3 @@ git clone --depth=1 https://github.com/Aloxaf/fzf-tab ${ZSH_CUSTOM:-$HOME/.oh-my
 
 # Install NVM
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh 
-
-# Install lvim
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh) -y
-
