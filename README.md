@@ -2,14 +2,14 @@
 
 ## macOS
 
-Update macOS and Install Xcode command line tools.
+Update macOS and install Xcode command line tools.
 
 ```sh
 sudo softwareupdate -i -a
 xcode-select --install
 ```
 
-Install [homebrew](https://brew.sh).
+Install [Homebrew](https://brew.sh).
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -21,18 +21,35 @@ Install [chezmoi](https://www.chezmoi.io).
 brew install chezmoi
 ```
 
-Init chezmoi.
+Initialize chezmoi with the default source directory.
 
 ```sh
 chezmoi init paulofaria
 ```
 
-Start yabai, skhd and sketchybar.
+Preview managed file changes first.
 
 ```sh
-brew services start yabai
-brew services start skhd
-brew services start sketchybar
+chezmoi status --exclude=scripts
+chezmoi diff --exclude=scripts
 ```
 
-Install Alfred Tokyo Night [theme](https://www.alfredapp.com/extras/theme/puSaeqbft2/).
+Apply managed files without running install scripts.
+
+```sh
+chezmoi apply --exclude=scripts
+```
+
+Run the full apply when you intentionally want bootstrap scripts too.
+
+```sh
+chezmoi apply
+```
+
+Useful commands.
+
+```sh
+chezmoi doctor --no-network
+chezmoi update
+chezmoi cd
+```
