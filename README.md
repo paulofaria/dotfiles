@@ -82,7 +82,7 @@ security add-generic-password -U -a "icloud" -s "icloud-smtp-passwd" -w "***"
 
 Local mail state is intentionally not tracked:
 
-- `~/.Mail/`
+- `~/Mail/`
 - notmuch database contents
 - downloaded attachments
 

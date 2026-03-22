@@ -3,15 +3,15 @@ Host imap.mail.me.com
 User REDACTED_ICLOUD_USER
 PassCmd "security find-generic-password -s mbsync-icloud -a REDACTED_ICLOUD_USER -w"
 Port 993
-SSLType IMAPS
+TLSType IMAPS
 AuthMechs PLAIN
 
 IMAPStore icloud-remote
 Account icloud
 
 MaildirStore icloud-local
-Path ~/.Mail/icloud/
-Inbox ~/.Mail/icloud/INBOX
+Path ~/Mail/icloud/
+Inbox ~/Mail/icloud/INBOX
 SubFolders Verbatim
 
 Channel icloud

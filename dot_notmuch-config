@@ -12,7 +12,7 @@
 # the database location (in a subdirectory called ".notmuch").
 #
 [database]
-path=/Users/paulo/.Mail
+path=/Users/paulo/Mail
 # User configuration
 #
 # Here is where you can let notmuch know how you would like to be
