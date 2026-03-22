@@ -1,0 +1,15 @@
+[accounts.icloud]
+default = true
+email = "REDACTED_EMAIL"
+display-name = "Paulo Faria"
+downloads-dir = "~/Downloads"
+backend.type = "notmuch"
+backend.db-path = "~/.Mail"
+backend.maildir-path = "~/.Mail/icloud"
+message.send.backend.type = "smtp"
+message.send.backend.host = "smtp.mail.me.com"
+message.send.backend.port = 587
+message.send.backend.login = "REDACTED_ICLOUD_USER"
+message.send.backend.encryption.type = "start-tls"
+message.send.backend.auth.type = "password"
+message.send.backend.auth.keyring = "icloud-smtp-passwd"

@@ -1,0 +1,31 @@
+# Copy this file to ~/.zshrc.local and fill in any machine-specific settings
+# you actually use. Keep secrets out of this file when a better system exists.
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Deno
+[[ -f "$HOME/.deno/env" ]] && source "$HOME/.deno/env"
+
+# Swift / Android
+export SWIFTLY_HOME_DIR="$HOME/.swiftly"
+[[ -s "$SWIFTLY_HOME_DIR/env.sh" ]] && source "$SWIFTLY_HOME_DIR/env.sh"
+export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
+export ANDROID_HOME="$ANDROID_SDK_ROOT"
+export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk/27.0.12077973"
+export JAVA_HOME="$HOME/.sdkman/candidates/java/current"
+case ":$PATH:" in
+  *":$ANDROID_SDK_ROOT/platform-tools:"*) ;;
+  *) export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH" ;;
+esac
+
+# SDKMAN
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"

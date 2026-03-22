@@ -53,3 +53,43 @@ chezmoi doctor --no-network
 chezmoi update
 chezmoi cd
 ```
+
+## Mail
+
+Tracked mail configuration:
+
+- `~/.mbsyncrc`
+- `~/.notmuch-config`
+- `~/.config/himalaya/config.toml`
+
+Mail tools in the bootstrap script:
+
+- `isync` (`mbsync`)
+- `notmuch`
+- `himalaya`
+
+Required macOS Keychain items:
+
+- `mbsync-icloud`
+- `icloud-smtp-passwd`
+
+Example commands:
+
+```sh
+security add-generic-password -U -a "REDACTED_ICLOUD_USER" -s "mbsync-icloud" -w "***"
+security add-generic-password -U -a "icloud" -s "icloud-smtp-passwd" -w "***"
+```
+
+Local mail state is intentionally not tracked:
+
+- `~/.Mail/`
+- notmuch database contents
+- downloaded attachments
+
+Useful mail commands:
+
+```sh
+mbsync icloud
+notmuch new
+himalaya folder list --account icloud
+```
