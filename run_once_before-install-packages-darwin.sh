@@ -43,7 +43,6 @@ brew "zoxide"
 # Cask Apps
 cask "chatgpt"
 cask "claude"
-cask "claude-code"
 cask "codex"
 cask "docker-desktop"
 cask "finicky"
@@ -82,3 +81,6 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | zsh
 
 # Install Rust without modifying shell startup files
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
+
+# Install Claude Code CLI (native installer, auto-updates)
+curl -fsSL https://claude.ai/install.sh | bash
