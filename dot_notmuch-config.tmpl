@@ -12,7 +12,7 @@
 # the database location (in a subdirectory called ".notmuch").
 #
 [database]
-path=/Users/paulo/Mail
+path={{ .chezmoi.homeDir }}/Mail
 # User configuration
 #
 # Here is where you can let notmuch know how you would like to be
@@ -29,7 +29,7 @@ path=/Users/paulo/Mail
 # address to which the original email was addressed.
 #
 [user]
-primary_email=REDACTED_ICLOUD_EMAIL
+primary_email={{ .icloudEmail }}
 # Configuration for "notmuch new"
 #
 # The following options are supported here:

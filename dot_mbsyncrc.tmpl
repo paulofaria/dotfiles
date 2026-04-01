@@ -1,7 +1,7 @@
 IMAPAccount icloud
 Host imap.mail.me.com
-User REDACTED_ICLOUD_USER
-PassCmd "security find-generic-password -s mbsync-icloud -a REDACTED_ICLOUD_USER -w"
+User {{ .icloudUser }}
+PassCmd "security find-generic-password -s mbsync-icloud -a {{ .icloudUser }} -w"
 Port 993
 TLSType IMAPS
 AuthMechs PLAIN

@@ -27,6 +27,17 @@ Initialize chezmoi with the default source directory.
 chezmoi init paulofaria
 ```
 
+Create the local chezmoi config with your template variables.
+
+```sh
+cat > ~/.config/chezmoi/chezmoi.toml << 'EOF'
+[data]
+  personalEmail = "your-email@example.com"
+  icloudEmail = "your-icloud@icloud.com"
+  icloudUser = "your-icloud-username"
+EOF
+```
+
 Preview managed file changes first.
 
 ```sh
@@ -76,7 +87,7 @@ Required macOS Keychain items:
 Example commands:
 
 ```sh
-security add-generic-password -U -a "REDACTED_ICLOUD_USER" -s "mbsync-icloud" -w "***"
+security add-generic-password -U -a "<icloudUser>" -s "mbsync-icloud" -w "***"
 security add-generic-password -U -a "icloud" -s "icloud-smtp-passwd" -w "***"
 ```
 
