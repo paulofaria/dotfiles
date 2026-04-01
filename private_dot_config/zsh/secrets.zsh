@@ -12,4 +12,8 @@ typeset -g POSTGRES_URL
 POSTGRES_URL="$(_keychain_env POSTGRES_URL)"
 [[ -n "$POSTGRES_URL" ]] && export POSTGRES_URL
 
+typeset -g ANNAS_SECRET_KEY
+ANNAS_SECRET_KEY="$(_keychain_env ANNAS_SECRET_KEY)"
+[[ -n "$ANNAS_SECRET_KEY" ]] && export ANNAS_SECRET_KEY
+
 unset -f _keychain_env

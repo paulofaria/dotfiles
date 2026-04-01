@@ -46,6 +46,7 @@ alias c='clear'
 eval "$(zoxide init zsh)"
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export ANNAS_DOWNLOAD_PATH="$HOME/Books"
 
 [[ -f "$HOME/.config/zsh/secrets.zsh" ]] && source "$HOME/.config/zsh/secrets.zsh"
 [[ -f "$HOME/.zshrc.local" ]] && source "$HOME/.zshrc.local"
