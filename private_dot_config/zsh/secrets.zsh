@@ -16,4 +16,16 @@ typeset -g ANNAS_SECRET_KEY
 ANNAS_SECRET_KEY="$(_keychain_env ANNAS_SECRET_KEY)"
 [[ -n "$ANNAS_SECRET_KEY" ]] && export ANNAS_SECRET_KEY
 
+typeset -g WISE_API_TOKEN
+WISE_API_TOKEN="$(_keychain_env WISE_API_TOKEN)"
+[[ -n "$WISE_API_TOKEN" ]] && export WISE_API_TOKEN
+
+typeset -g PLUGGY_CLIENT_ID
+PLUGGY_CLIENT_ID="$(_keychain_env PLUGGY_CLIENT_ID)"
+[[ -n "$PLUGGY_CLIENT_ID" ]] && export PLUGGY_CLIENT_ID
+
+typeset -g PLUGGY_CLIENT_SECRET
+PLUGGY_CLIENT_SECRET="$(_keychain_env PLUGGY_CLIENT_SECRET)"
+[[ -n "$PLUGGY_CLIENT_SECRET" ]] && export PLUGGY_CLIENT_SECRET
+
 unset -f _keychain_env
